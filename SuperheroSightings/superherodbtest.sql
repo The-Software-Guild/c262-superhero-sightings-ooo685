@@ -34,7 +34,7 @@ longitude int not null,
 description varchar(250)
 );
 
-create table sightings(
+create table sighting(
 id int primary key auto_increment,
 superId int not null,
 locationId int not null,
