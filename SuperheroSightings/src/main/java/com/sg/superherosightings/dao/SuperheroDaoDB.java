@@ -67,7 +67,7 @@ public class SuperheroDaoDB implements SuperheroDao{
         jdbc.update(DELETE_SUPER_ORG, id);
 
         final String DELETE_SIGHTING = "DELETE FROM sighting WHERE superId = ?";
-        jdbc.update(DELETE_SIGHTING);
+        jdbc.update(DELETE_SIGHTING, id);
 
         final String DELETE_HERO = "DELETE FROM superhero WHERE id = ?";
         jdbc.update(DELETE_HERO, id);
