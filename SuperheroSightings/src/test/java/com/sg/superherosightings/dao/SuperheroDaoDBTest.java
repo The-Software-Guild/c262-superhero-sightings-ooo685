@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -87,7 +88,7 @@ public class SuperheroDaoDBTest {
     }
 
     @Test
-    public void testUpateHero() {
+    public void testUpdateHero() {
         Superhero hero = new Superhero();
         hero.setName("Frozone");
         hero.setPower("Ice Bender");
@@ -121,6 +122,19 @@ public class SuperheroDaoDBTest {
         org.setMembers(heroes);
         org = organizationDao.addOrg(org);
 
+        Location location = new Location();
+        location.setName("Eiffel Tower");
+        location.setAddress("Paris");
+        location.setLatitude(3200);
+        location.setLongitude(7682);
+        location = locationDao.addLocation(location);
+
+        Sighting sighting = new Sighting();
+        sighting.setDate(LocalDate.now());
+        sighting.setSuperhero(hero);
+        sighting.setLocation(location);
+        sighting = sightingDao.addSighting(sighting);
+
         Superhero fromDao = superheroDao.getHeroById(hero.getId());
         assertEquals(hero, fromDao);
 
@@ -128,6 +142,8 @@ public class SuperheroDaoDBTest {
 
         fromDao = superheroDao.getHeroById(hero.getId());
         assertNull(fromDao);
+        //assertNull(sighting.getSuperhero());
+        //assertNull(org.getMembers());
     }
 
 }
