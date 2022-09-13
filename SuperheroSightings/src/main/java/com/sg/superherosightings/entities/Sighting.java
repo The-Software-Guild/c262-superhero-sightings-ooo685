@@ -1,5 +1,6 @@
 package com.sg.superherosightings.entities;
 
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -8,6 +9,7 @@ public class Sighting {
     private int id;
     private Superhero superhero;
     private Location location;
+    @NotBlank(message = "Date must not be empty")
     private LocalDate date;
 
     public int getId() {
