@@ -32,6 +32,106 @@
       <a href="sightings.html" class="btn btn-outline-primary btn-lg">Sightings</a>
     </div>
   </div>
+  <div class="row m-4 border border-dark">
+    <div class="col-3 text-center m-3">
+      <span class="h3">Add Location</span>
+    </div>
+    <div class="col-7 text-center m-3">
+      <form action="addLocation" method="POST">
+        <div class="form-group row">
+          <label for="name" class="col-3 col-form-label">
+            Name</label>
+          <div class="col-9">
+            <input type="text" name="name" id="name" class="form-control"
+                   th:value="${'location.name'}" />
+            <div th:if="${#fields.hasErrors('location.name')}">
+              <p th:each="error : ${#fields.errors('location.name')}" class="alert alert-danger"
+                 th:text="${error}"> Bad name </p>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="address" class="col-3 col-form-label">
+            Power</label>
+          <div class="col-9">
+            <input type="text" name="address" id="address" class="form-control"
+                   th:value="${'location.address'}" />
+            <div th:if="${#fields.hasErrors('location.address')}">
+              <p th:each="error : ${#fields.errors('location.address')}" class="alert alert-danger"
+                 th:text="${error}"> Bad address</p>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="description" class="col-3 col-form-label">
+            Description</label>
+          <div class="col-9">
+            <input type="text" name="description" id="description" class="form-control"
+                   th:value="${'location.description'}" />
+            <div th:if="${#fields.hasErrors('location.description')}">
+              <p th:each="error : ${#fields.errors('location.description')}" class="alert alert-danger"
+                 th:text="${error}"> Bad description</p>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="latitude" class="col-3 col-form-label">
+            Latitude</label>
+          <div class="col-9">
+            <input type="number" name="latitude" id="latitude" class="form-control"
+                   th:value="${'location.latitude'}" />
+            <div th:if="${#fields.hasErrors('location.latitude')}">
+              <p th:each="error : ${#fields.errors('location.latitude')}" class="alert alert-danger"
+                 th:text="${error}"> Bad latitude coordinate</p>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="longitude" class="col-3 col-form-label">
+            Longitude</label>
+          <div class="col-9">
+            <input type="number" name="longitude" id="longitude" class="form-control"
+                   th:value="${'location.longitude'}" />
+            <div th:if="${#fields.hasErrors('location.longitude')}">
+              <p th:each="error : ${#fields.errors('location.longitude')}" class="alert alert-danger"
+                 th:text="${error}"> Bad longitude coordinate</p>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Location</button>
+      </form>
+    </div>
+  </div>
+  <div class="row m-4 border border-dark">
+    <div class="col text-center m-3">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Address</th>
+          <th>Description</th>
+          <th>Latitude</th>
+          <th>Longitude</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="location : ${locations}">
+          <td th:text="${location.id}">Location ID</td>
+          <td th:text="${location.name}">Location Name</td>
+          <td th:text="${location.address}">Location Address</td>
+          <td th:text="${location.description}">Location Description</td>
+          <td th:number="${location.latitude}">Location Latitude</td>
+          <td th:number="${location.longitude}">Location Longitude</td>
+          <td><a href="#" th:href="@{/editLocation(id=${location.id})}">Edit</a></td>
+          <td><a href="#" th:href="@{/deleteLocation(id=${location.id})}">Delete</a></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 
 <!-- End main body -->

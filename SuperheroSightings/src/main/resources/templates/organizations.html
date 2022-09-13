@@ -96,8 +96,8 @@
           <td th:text="${organization.id}">Organization ID</td>
           <td th:text='${organization.name}'>Organization Name</td>
           <td><a href="#" th:href="@{/courseDetail(id=${organization.id})}">Details</a></td>
-          <td><a href="#" th:href="@{/editCourse(id=${organization.id})}">Edit</a></td>
-          <td><a href="#" th:href="@{/deleteCourse(id=${organization.id})}">Delete</a></td>
+          <td><a href="#" th:href="@{/editOrganization(id=${organization.id})}">Edit</a></td>
+          <td><a href="#" th:href="@{/deleteOrganization(id=${organization.id})}">Delete</a></td>
         </tr>
         </tbody>
       </table>
