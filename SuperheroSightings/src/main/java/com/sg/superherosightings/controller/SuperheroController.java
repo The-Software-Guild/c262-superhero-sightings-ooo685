@@ -31,14 +31,14 @@ public class SuperheroController {
     SightingDao sightingDao;
 
     @GetMapping("superheroes")
-    public String displayHeroes(Model model) {
+    public String displaySuperheroes(Model model) {
         List<Superhero> heroes = superheroDao.getAllHeroes();
         model.addAttribute("superheroes", heroes);
         return "superheroes";
     }
 
     @PostMapping("addSuperhero")
-    public String addHero(String name, String power, String description) {
+    public String addSuperhero(String name, String power, String description) {
         Superhero superhero = new Superhero();
         superhero.setName(name);
         superhero.setPower(power);
@@ -49,20 +49,20 @@ public class SuperheroController {
     }
 
     @GetMapping("deleteSuperhero")
-    public String deleteHero(Integer id) {
+    public String deleteSuperhero(Integer id) {
         superheroDao.deleteHeroById(id);
         return "redirect:/superheroes";
     }
 
     @GetMapping("editSuperhero")
-    public String editStudent(Integer id, Model model) {
+    public String editSuperhero(Integer id, Model model) {
         Superhero superhero = superheroDao.getHeroById(id);
         model.addAttribute("superhero", superhero);
         return "editSuperhero";
     }
 
     @PostMapping("editSuperhero")
-    public String performEditStudent(@Valid Superhero superhero, BindingResult result) {
+    public String performEditSuperhero(@Valid Superhero superhero, BindingResult result) {
         if(result.hasErrors()) {
             return "editSuperhero";
         }
